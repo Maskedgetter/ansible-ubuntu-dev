@@ -1,0 +1,36 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install common packages
+  apt:
+    name: "{{ common_packages }}"
+    state: present
+
+- name: Create development user
+  user:
+    name: "{{ user_name }}"
+    shell: "{{ user_shell }}"
+    groups: "{{ user_groups }}"
+    append: yes
+    create_home: yes
+
+- name: Set up passwordless sudo for the user
+  lineinfile:
+    path: /etc/sudoers.d/{{ user_name }}
+    line: "{{ user_name }} ALL=(ALL) NOPASSWD: ALL"
+    create: yes
+    mode: 0440
+    validate: 'visudo -cf %s'
+
+- name: Add authorized key (if variable is defined)
+  authorized_key:
+    user: "{{ user_name }}"
+    key: "{{ user_ssh_public_key }}"
+  when: user_ssh_public_key is defined
+
+# Optional: Install Oh My Zsh
+# Leaving out for now to keep it simple and strictly Ansible-native without external scripts if possible, 
+# but Zsh is installed.

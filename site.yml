@@ -1,0 +1,6 @@
+---
+- hosts: dev_servers
+  become: yes
+  roles:
+    - common
+    - docker

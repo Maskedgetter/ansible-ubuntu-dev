@@ -1,0 +1,19 @@
+---
+# User configuration
+user_name: ubuntu
+user_shell: /bin/zsh
+user_groups:
+  - sudo
+
+# Packages
+common_packages:
+  - git
+  - curl
+  - wget
+  - vim
+  - htop
+  - unzip
+  - software-properties-common
+  - build-essential
+  - zsh
+  - net-tools
