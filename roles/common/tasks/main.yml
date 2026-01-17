@@ -31,6 +31,10 @@
     key: "{{ user_ssh_public_key }}"
   when: user_ssh_public_key is defined
 
-# Optional: Install Oh My Zsh
-# Leaving out for now to keep it simple and strictly Ansible-native without external scripts if possible, 
-# but Zsh is installed.
+- name: Copy .zshrc
+  copy:
+    src: .zshrc
+    dest: "/home/{{ user_name }}/.zshrc"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0644'

@@ -1,6 +1,6 @@
 ---
 # User configuration
-user_name: ubuntu
+user_name: devuser
 user_shell: /bin/zsh
 user_groups:
   - sudo

@@ -36,7 +36,7 @@ Commonツール、ユーザー設定、およびDocker環境を自動構築し�
 2. **変数の設定**: `group_vars/all.yml` で作成したいユーザー名などを変更できます。
 
     ```yaml
-    user_name: ubuntu  # 作成される開発用ユーザー
+    user_name: devuser  # 作成される開発用ユーザー
     ```
 
 ## 実行方法
@@ -57,15 +57,15 @@ ansible-playbook -i inventory/hosts.ini site.yml --ask-become-pass
 ## 実行後のWindowsからの接続
 
 ### SSH接続
-作成されたユーザー（デフォルト: `ubuntu`）でSSH接続します。
+作成されたユーザー（デフォルト: `devuser`）でSSH接続します。
 ```powershell
-ssh ubuntu@192.168.1.xxx
+ssh devuser@192.168.1.xxx
 ```
 
 ### VS Code Remote - SSH
 1. VS Codeに "Remote - SSH" 拡張機能をインストールします。
 2. 左下の緑色のアイコンをクリックし、"Connect to Host..." を選択します。
-3. `ubuntu@192.168.1.xxx` を入力して接続します。
+3. `devuser@192.168.1.xxx` を入力して接続します。
 
 ### Dockerの利用
 作成されたユーザーは `docker` グループに追加されているため、`sudo` なしで `docker` コマンドが実行可能です。
